@@ -4,14 +4,21 @@ LABEL maintainer="github.com/guimassoqueto"
 ENV PYTHONUNBUFFERED 1 
 
 COPY ./requirements.txt /tmp/requirements.txt
+COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
+ARG DEV=false
 RUN python -m venv /py && \
     pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt && \
-    rm -rf /tmp && \
+    pip install -r /tmp/requirements.txt
+
+RUN if [[ $DEV == "true" ]]; \
+        then pip install -r /tmp/requirements.dev.txt; \
+    fi;
+
+RUN rm -rf /tmp && \
     adduser \
         --disabled-password \
         --no-create-home \
