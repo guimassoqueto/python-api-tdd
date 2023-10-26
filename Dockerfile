@@ -11,11 +11,11 @@ EXPOSE 8000
 
 ARG DEV=false
 RUN python -m venv /py && \
-    pip install --upgrade pip && \
-    pip install -r /tmp/requirements.txt
+    /py/bin/python -m pip install --upgrade pip && \
+    /py/bin/python -m pip install -r /tmp/requirements.txt
 
 RUN if [[ $DEV == "true" ]]; \
-        then pip install -r /tmp/requirements.dev.txt; \
+        then /py/bin/python -m pip install -r /tmp/requirements.dev.txt; \
     fi;
 
 RUN rm -rf /tmp && \
