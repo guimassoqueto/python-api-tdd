@@ -4,11 +4,22 @@ up:
 down:
 	docker compose down
 
+# creates a superuser
+superuser:
+	docker compose run --rm app sh -c "python manage.py createsuperuser"
+
 # command used in CI/CD pipeline in Github Actions [see .github/workflows/checks.yml line 23]
 waitdb:
 	docker compose run --rm app sh -c "python manage.py wait_for_db"
 
-# Lint: command used in CI/CD pipeline in Github Actions [see .github/workflows/checks.yml line 26] 
+# migrations
+migrations:
+	docker compose run --rm app sh -c "python manage.py makemigrations"
+
+migrate:
+	docker compose run --rm app sh -c "python manage.py migrate"
+
+# Lint: command used in CI/CD pipeline in Github Actions [see .github/workflows/checks.yml line 26]
 lint:
 	docker compose run --rm app sh -c "flake8"
 
