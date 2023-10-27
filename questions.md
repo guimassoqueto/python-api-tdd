@@ -1,3 +1,5 @@
 1. What is the meaning of the variable `PYTHONUNBUFFERED 1` in the Dockerfile?
   >Setting PYTHONUNBUFFERED to a non-empty value different from 0 ensures that the python output i.e. the stdout and stderr streams are sent straight to terminal (e.g. your container log) without being first buffered and that you can see the output of your application (e.g. django logs) in real time.
 2. Inside the *compose.yaml* what is the args inside `services.app.build.args`? [The command replaces the DEV arg inside the Dockerfile]
+  >**ARG** is only available during the build of a Docker image (RUN etc), not after the image is created and containers are started from it (ENTRYPOINT, CMD). You can use ARG values to set ENV values to work around that.  
+  **ENV** values are available to containers, but also to the commands of your Dockerfile which run during an image build, starting with the line where they are introduced.
