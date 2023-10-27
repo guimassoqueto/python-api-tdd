@@ -4,6 +4,9 @@ up:
 down:
 	docker compose down
 
+waitdb:
+	docker compose run --rm app sh -c "python manage.py wait_for_db"
+
 lint:
 	docker compose run --rm app sh -c "flake8"
 
