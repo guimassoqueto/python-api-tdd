@@ -16,8 +16,13 @@ waitdb:
 migrations:
 	docker compose run --rm app sh -c "python manage.py makemigrations"
 
+# migrate database
 migrate:
 	docker compose run --rm app sh -c "python manage.py migrate"
+
+# do database changes (remove the database volume first)
+datamigrations:
+	make waitdb && make migrations && make migrate
 
 # Lint: command used in CI/CD pipeline in Github Actions [see .github/workflows/checks.yml line 26]
 lint:
