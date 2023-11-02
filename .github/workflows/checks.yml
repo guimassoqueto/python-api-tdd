@@ -20,7 +20,7 @@ jobs:
 
       - name: Run Tests
         # docker compose run --rm sh -c "python manage.py wait_for_db" && docker compose run --rm sh -c "python manage.py test"
-        run: make waitdb && make test 
-        
+        run: docker compose run --rm sh -c "python manage.py wait_for_db" && make test
+
       - name: Lint Code
         run: make lint # docker compose run --rm sh -c flake8
