@@ -12,12 +12,12 @@ make env
 
 2. Make data migrations:
 ```shell
-make datamigrations
-```
-
-3. Init the application:
-```shell
 make up
 ```
 
-4. View the app in browser [localhost:8000](http://localhost:8000)
+3. Create a superuser:
+```shell
+make superuser
+```
+
+4. Login with your previously superuser credentials: [localhost:8000/user](http://localhost:8000/admin)
