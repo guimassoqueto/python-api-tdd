@@ -25,10 +25,10 @@ RUN if [[ $DEV == "true" ]]; \
 
 RUN rm -rf /tmp && apk del .tmp-build-deps
 
-# RUN adduser \
-#         --disabled-password \
-#         --no-create-home \
-#         django-user
+RUN adduser \
+        --disabled-password \
+        --no-create-home \
+        django-user
 
 ENV PATH="/py/bin:$PATH"
-# USER django-user
+USER django-user
