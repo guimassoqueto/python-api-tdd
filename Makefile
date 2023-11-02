@@ -31,6 +31,11 @@ lint:
 test:
 	docker compose run --rm app sh -c "python manage.py test"
 
+
+# CI/CD Pipeline: used in .github/checks.yml
+waitdb:
+	docker compose run --rm app sh -c "python manage.py wait_for_db"
+
 # Open github repository in the browser
 or:
 	@open http://github.com/guimassoqueto/python-api-tdd
