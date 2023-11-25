@@ -1,6 +1,17 @@
 # If you are running this project for the first time, make sure to follow
 # the steps, from 1 to 3, the remain commands are optional
 
+GREEN=\033[0;32m
+RED=\033[0;31m
+
+# create new app
+newapp:
+	@if [ -n "$(app)" ]; then \
+		docker compose run --rm app sh -c "python manage.py startapp $(app)"; \
+	else \
+		echo "${RED}Error: Wrong command. Retry with\n${GREEN}make newapp app=<new-app>"; \
+	fi
+
 # step 1: create .env file from .env.sample
 env:
 	@cp .env.sample .env
