@@ -5,7 +5,7 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: ${DOCKERFILE}
+      dockerfile: Dockerfile
       args:
         - DEV=true
     depends_on:
